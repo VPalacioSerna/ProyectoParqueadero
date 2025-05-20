@@ -1,5 +1,5 @@
 package proyectoparqueadero;
-
+//vale
 import java.util.Scanner;
 
 public class Administrador {
