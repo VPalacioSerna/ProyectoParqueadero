@@ -60,15 +60,14 @@ public class Administrador {
             + "Cerrar --- (Digite 0)\n"
             + "Opción: ");
         // vale: hice cambio para validar la entrada antes de leerla
-        while (!sc.hasNextInt()) {
+        while (!sc.hasNextInt()) { //el metodo sc.hasNextInt() es el primero que lee para revisar, 
+                                   //evita poner letras o caracteres diferentes a un entero
           System.out.println("Por favor, ingrese un número válido.");
           sc.next(); // descarta la entrada incorrecta
         }
         int opcion = sc.nextInt();
-        /*
-         * Se agregaron nuevas opciones para el menú, y se "optimizo"
-         */
-
+        
+        //Se agregaron nuevas opciones para el menú, y se "optimizo"
         switch (opcion) {
           case 1:
             System.out.print("\n¿Qué tipo vehiculo desea agregar (Carro(1) - Moto(2))?: ");
