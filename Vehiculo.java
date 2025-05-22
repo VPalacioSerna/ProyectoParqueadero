@@ -59,6 +59,13 @@ public class Vehiculo {
 
   // vale: Método para validar placa: 3 letras seguidas de 3 números
   // Para carro: 3 letras + 3 números, solo mayúsculas (ej: ABC123)
+  /*
+    Significado simbolico de el metodo matches:
+    ^ = inicio
+    $ = fin
+    {3} = 3 veces repetidas
+    \\d = cualquier digito del 0 al 9
+  */
   public static boolean validarPlacaCarro(String placa) {
     return placa.matches("^[A-Z]{3}\\d{3}$");
   }
