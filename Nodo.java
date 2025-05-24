@@ -1,3 +1,5 @@
+package proyectoparqueadero;
+
 public class Nodo {
 
 	Nodo siguiente;
