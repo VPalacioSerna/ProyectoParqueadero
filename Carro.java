@@ -18,9 +18,8 @@ public class Carro extends Vehiculo {
   private static Scanner sc = new Scanner(System.in);
 
   // Cpnstructores
-  public Carro() {
-  }
-
+  public Carro() {}
+  
   public Carro(String color, String marca, String placa, int numeroDePuertas, String tipoDeVehiculo) {
     super(color, marca, placa);
     this.numeroDePuertas = numeroDePuertas;
@@ -45,7 +44,7 @@ public class Carro extends Vehiculo {
   }
 
   // Métodos
-  public static void agregarCarro() {
+  public static Carro agregarCarro() {
 
     int numeroEstacionamientoParaRegistro = 0;
     Carro carro = new Carro();
@@ -172,12 +171,17 @@ public class Carro extends Vehiculo {
     }
     espaciosCarro[numeroEstacionamientoParaRegistro] = carro;
     System.out.println();
+
+    return carro;
   }
 
-  public static void quitarVehiculoCarro(String placa) {
+  public static Carro quitarVehiculoCarro(String placa) {
+    Carro carro = new Carro();
+    
     for (int i = 0; i < espaciosCarro.length; i++) {
       if (espaciosPisoCarro[i] != false) {
         if (espaciosCarro[i].getPlaca().equals(placa)) {
+          carro = espaciosCarro[i];
           espaciosCarro[i] = null;
           espaciosPisoCarro[i] = false;
           System.out.println("\nSe ha eliminado con exito !!");
@@ -186,13 +190,16 @@ public class Carro extends Vehiculo {
         }
       }
     }
+    return carro;
   }
 
   //vale: hice cambios para modificar la info
-  public static void modificarInformacionCarro(int puesto) {
+  public static Carro modificarInformacionCarro(String placa) {
+    Carro carro = new Carro();
+    
     for (int i = 0; i < espaciosCarro.length; i++) {
         if (espaciosPisoCarro[i] != false) {
-            if (puesto == Integer.valueOf(espaciosCarro[i].getNumeroEstacionamiento())) {
+            if (placa.equals(espaciosCarro[i].getPlaca())) {
                 // Selección de color
                 System.out.println("Seleccione el color:");
                 System.out.println("1. NEGRO" + "\n2. BLANCO" + "\n3. GRIS" + "\n4. ROJO" + "\n5. AZUL" + "\n0. Otro: ");
@@ -277,10 +284,13 @@ public class Carro extends Vehiculo {
                     }
                 } while (!validarPlacaCarro(placa));
                 espaciosCarro[i].setPlaca(placa);
+
+              carro = espaciosCarro[i];
             }
         }
     }
     System.out.println();
+    return carro;
 }
 
   /*public static void modificarInformacionCarro(int puesto) {
@@ -363,4 +373,10 @@ public class Carro extends Vehiculo {
       System.out.print("\nError de lectura");
     }
   }
+
+  public String toStringCarro() {
+		return color + "," + marca + "," + placa + "," + numeroDePuertas +"," + tipoDeVehiculo 
+				+ "," + numeroEstacionamiento;
+	}
+  
 }
