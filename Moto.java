@@ -17,9 +17,7 @@ public class Moto extends Vehiculo {
   private static Scanner sc = new Scanner(System.in);
 
   // Constructor
-  public Moto() {
-
-  }
+  public Moto() {}
 
   public Moto(String color, String marca, String placa, int cilindraje) {
     super(color, marca, placa);
@@ -36,7 +34,7 @@ public class Moto extends Vehiculo {
   }
 
   // Métodos
-  public static void agregarMoto() {
+  public static Moto agregarMoto() {
 
     int numeroEstacionamientoParaRegistro = 0;
     Moto moto = new Moto();
@@ -154,42 +152,52 @@ public class Moto extends Vehiculo {
     }
     espaciosMoto[numeroEstacionamientoParaRegistro] = moto;
     System.out.println();
+
+    return moto;
   }
 
-  public static void quitarVehiculoMoto(String placa) {
-    for (int i = 0; i < espaciosMoto.length; i++) {
-      if (espaciosPisoMoto[i] != false) {
-        if (espaciosMoto[i].getPlaca().equals(placa)) {
-          espaciosMoto[i] = null;
-          espaciosPisoMoto[i] = false;
-          System.out.println("\nSe ha eliminado con exito !!");
-        } else {
-          continue;
-        }
-      }
-    }
-  }
+  public static Moto quitarVehiculoMoto(String placa) {
+		Moto moto = new Moto();
+		
+		for (int i = 0; i < espaciosMoto.length; i++) {
+			if(espaciosPisoMoto[i] != false) {
+				if (espaciosMoto[i].getPlaca().equals(placa)) {
+					moto = espaciosMoto[i];
+					espaciosMoto[i] = null;
+					espaciosPisoMoto[i] = false;
+				} else {
+					continue;
+				}
+			}
+		}
+		return moto;
+	}
 
-  public static void modificarInformacionMoto(int puesto) {
-    for (int i = 0; i < espaciosMoto.length; i++) {
-      if (espaciosPisoMoto[i] != false) {
-        if (puesto == Integer.valueOf(espaciosMoto[i].getNumeroEstacionamiento())) {
-          System.out.print("\nIngrese color: ");
-          espaciosMoto[i].setColor(sc.next());
+  public static Moto modificarInformacionMoto(String placa) {
+		Moto moto = new Moto();
+		
+		for(int i =0; i<espaciosMoto.length; i++) {
+			if(espaciosPisoMoto[i]!=false) {
+				if(placa.equals(espaciosMoto[i].getPlaca())) {
+					System.out.print("\nIngrese color: ");
+					espaciosMoto[i].setColor(sc.next().toUpperCase());
 
-          System.out.print("Ingrese marca: ");
-          espaciosMoto[i].setMarca(sc.next());
+					System.out.print("Ingrese marca: ");
+					espaciosMoto[i].setMarca(sc.next().toUpperCase());
+					
+					System.out.print("Ingrese cilindraje: ");
+					espaciosMoto[i].setCilindraje(sc.nextInt());
 
-          System.out.print("Ingrese cilindraje: ");
-          espaciosMoto[i].setCilindraje(sc.nextInt());
-
-          System.out.print("Ingrese la placa: ");
-          espaciosMoto[i].setPlaca(sc.next());
-        }
-      }
-    }
-    System.out.println();
-  }
+					System.out.print("Ingrese la placa: ");
+					espaciosMoto[i].setPlaca(sc.next().toUpperCase());
+					
+					moto = espaciosMoto[i];
+				}
+			}
+		}
+		System.out.println();
+		return moto;
+	}
 
   public static void guardarVehiculoEnArchivo(String direccionArchivo) {
     String lineaDeInfoMoto = "";
@@ -244,5 +252,8 @@ public class Moto extends Vehiculo {
       System.out.print("\nError de lectura");
     }
   }
+public String toStringMoto() {
+		return color + "," + marca + "," + placa + "," + cilindraje + "," + numeroEstacionamiento;
+	}
 
 }
