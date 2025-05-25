@@ -156,19 +156,34 @@ public class Carro extends Vehiculo {
       }
     } while (!validarPlacaCarro(placa));
     carro.setPlaca(placa);
-
-    System.out.print("Ingrese el # del puesto donde se estaciono: ");
-    carro.setNumeroEstacionamiento(sc.next());
+    
+    
+    //Maicol: Agregué la validación de carros
+    int puesto = 0;
+    boolean puestoValido = false;
+    while (!puestoValido) {
+      System.out.print("¿En qué puesto se estacionó? (1-100): ");
+      if (sc.hasNextInt()) {
+          puesto = sc.nextInt();
+          sc.nextLine(); 
+          if (puesto >= 1 && puesto <= 100) {
+              puesto = validaPuestoCarro(puesto);
+              puestoValido = true;
+          } else {
+              System.out.println("Número de puesto inválido. Intente de nuevo.");
+          }
+      } else {
+        System.out.println("Entrada inválida. Debe ingresar un número.");
+          sc.nextLine(); 
+      }
+    }
+    carro.setNumeroEstacionamiento(String.valueOf(puesto));
+    /*System.out.print("Ingrese el # del puesto donde se estaciono: ");
+    carro.setNumeroEstacionamiento(sc.next());/**/
 
     numeroEstacionamientoParaRegistro = Integer.valueOf(carro.getNumeroEstacionamiento());
 
-    for (int j = 0; j < espaciosCarro.length; j++) {
-      if (j == numeroEstacionamientoParaRegistro) {
-        espaciosPisoCarro[j] = true;
-      } else {
-        continue;
-      }
-    }
+    espaciosPisoCarro[numeroEstacionamientoParaRegistro] = true;
     espaciosCarro[numeroEstacionamientoParaRegistro] = carro;
     System.out.println();
 
@@ -274,8 +289,7 @@ public class Carro extends Vehiculo {
                 System.out.print("Ingrese tipo de vehiculo: ");
                 espaciosCarro[i].setTipoDeVehiculo(sc.next());
 
-                // Validar placa
-                
+                // Validar placa                
                 do {
                     System.out.print("Ingrese la placa (3 letras y 3 números, ej: ABC123): ");
                     placa = sc.next();
@@ -378,5 +392,35 @@ public class Carro extends Vehiculo {
 		return color + "," + marca + "," + placa + "," + numeroDePuertas +"," + tipoDeVehiculo 
 				+ "," + numeroEstacionamiento;
 	}
-  
+  //Metodo para validar si el puesto está ocupado o no
+  public static int validaPuestoCarro(int numeroEstacionamiento){
+      while(espaciosCarro[numeroEstacionamiento] != null){
+          System.out.println("El espacio ya está ocupado, ingrese otro espacio");
+          int nuevoPuesto = 0;
+          boolean puestoValido = false;
+          while (!puestoValido) {
+            System.out.print("¿En qué puesto se estacionó? (1-100): ");
+            if (sc.hasNextInt()) {
+                nuevoPuesto = sc.nextInt();
+                sc.nextLine(); 
+            if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
+              if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
+                    if (espaciosCarro[nuevoPuesto] == null) {
+                        numeroEstacionamiento = nuevoPuesto;
+                        puestoValido = true;
+                    } else {
+                        System.out.println("Ese puesto también está ocupado. Intente otro.");
+                    }
+            }else {
+              System.out.println("Número de puesto inválido. Intente de nuevo.");
+            }
+            }else {
+              System.out.println("Entrada inválida. Debe ingresar un número.");
+              sc.nextLine(); 
+        }
+      }
+    }
+  }  
+      return numeroEstacionamiento;
+}
 }
