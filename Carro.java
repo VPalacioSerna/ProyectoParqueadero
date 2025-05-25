@@ -275,7 +275,7 @@ public class Carro extends Vehiculo {
                 espaciosCarro[i].setTipoDeVehiculo(sc.next());
 
                 // Validar placa
-                String placa;
+                
                 do {
                     System.out.print("Ingrese la placa (3 letras y 3 números, ej: ABC123): ");
                     placa = sc.next();
