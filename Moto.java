@@ -1,3 +1,4 @@
+
 package proyectoparqueadero;
 
 import java.io.BufferedReader;
@@ -120,6 +121,7 @@ public class Moto extends Vehiculo {
     moto.setPlaca(placa);
 
     //vale: hice cambios para validar el puesto
+    //Buñuelito: Añadí el método validaPuesto
     int puesto = 0;
     boolean puestoValido = false;
     while (!puestoValido) {
@@ -128,6 +130,7 @@ public class Moto extends Vehiculo {
           puesto = sc.nextInt();
           sc.nextLine(); // Limpia el buffer
           if (puesto >= 1 && puesto <= 50) {
+              puesto = validaPuestoMoto(puesto);
               puestoValido = true;
           } else {
               System.out.println("Número de puesto inválido. Intente de nuevo.");
@@ -143,13 +146,8 @@ public class Moto extends Vehiculo {
 
     numeroEstacionamientoParaRegistro = Integer.valueOf(moto.getNumeroEstacionamiento());
 
-    for (int j = 0; j < espaciosMoto.length; j++) {
-      if (j == numeroEstacionamientoParaRegistro) {
-        espaciosPisoMoto[j] = true;
-      } else {
-        continue;
-      }
-    }
+    
+    espaciosPisoMoto[numeroEstacionamientoParaRegistro] = true;
     espaciosMoto[numeroEstacionamientoParaRegistro] = moto;
     System.out.println();
 
@@ -256,4 +254,35 @@ public String toStringMoto() {
 		return color + "," + marca + "," + placa + "," + cilindraje + "," + numeroEstacionamiento;
 	}
 
+//Buñuelito: Añadí el metodo para validar motos
+public static int validaPuestoMoto(int numeroEstacionamiento){
+ while(espaciosMoto[numeroEstacionamiento] != null){
+          System.out.println("El espacio ya está ocupado, ingrese otro espacio");
+          int nuevoPuesto = 0;
+          boolean puestoValido = false;
+          while (!puestoValido) {
+            System.out.print("¿En qué puesto se estacionó? (1-100): ");
+            if (sc.hasNextInt()) {
+                nuevoPuesto = sc.nextInt();
+                sc.nextLine(); 
+            if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
+              if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
+                    if (espaciosMoto[nuevoPuesto] == null) {
+                        numeroEstacionamiento = nuevoPuesto;
+                        puestoValido = true;
+                    } else {
+                        System.out.println("Ese puesto también está ocupado. Intente otro.");
+                    }
+            }else {
+              System.out.println("Número de puesto inválido. Intente de nuevo.");
+            }
+            }else {
+              System.out.println("Entrada inválida. Debe ingresar un número.");
+              sc.nextLine(); 
+        }
+      }
+    }
+  }  
+      return numeroEstacionamiento;
+} 
 }
