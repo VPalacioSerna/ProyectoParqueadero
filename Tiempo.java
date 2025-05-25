@@ -1,9 +1,10 @@
+package proyectoparqueadero;
 import java.time.format.DateTimeFormatter;// se usa en los dos metodos para importar o traer fecha y hora
 import java.time.LocalDate;//metodo para slo tener la fecha
 import java.time.LocalTime;//metodo solo para tener la hora
 
 public class Tiempo {
-public Steing dia (){  
+public String dia (){  
         LocalDate fecha = LocalDate.now();
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yy");
         String dia = fecha.format(formatoFecha);
