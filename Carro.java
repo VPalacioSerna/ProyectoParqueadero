@@ -166,7 +166,7 @@ public class Carro extends Vehiculo {
       if (sc.hasNextInt()) {
           puesto = sc.nextInt();
           sc.nextLine(); 
-          if (puesto >= 1 && puesto <= 100) {
+          if (puesto >= 1 && puesto <= 50) {
               puesto = validaPuestoCarro(puesto);
               puestoValido = true;
           } else {
@@ -403,8 +403,8 @@ public class Carro extends Vehiculo {
             if (sc.hasNextInt()) {
                 nuevoPuesto = sc.nextInt();
                 sc.nextLine(); 
-            if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
-              if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
+            if (nuevoPuesto >= 1 && nuevoPuesto <= 50) {
+              if (nuevoPuesto >= 1 && nuevoPuesto <= 50) {
                     if (espaciosCarro[nuevoPuesto] == null) {
                         numeroEstacionamiento = nuevoPuesto;
                         puestoValido = true;
