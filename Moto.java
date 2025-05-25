@@ -129,7 +129,7 @@ public class Moto extends Vehiculo {
       if (sc.hasNextInt()) {
           puesto = sc.nextInt();
           sc.nextLine(); // Limpia el buffer
-          if (puesto >= 1 && puesto <= 50) {
+          if (puesto >= 1 && puesto <= 40) {
               puesto = validaPuestoMoto(puesto);
               puestoValido = true;
           } else {
