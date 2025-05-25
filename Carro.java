@@ -162,7 +162,7 @@ public class Carro extends Vehiculo {
     int puesto = 0;
     boolean puestoValido = false;
     while (!puestoValido) {
-      System.out.print("¿En qué puesto se estacionó? (1-100): ");
+      System.out.print("¿En qué puesto se estacionó? (1-50): ");
       if (sc.hasNextInt()) {
           puesto = sc.nextInt();
           sc.nextLine(); 
