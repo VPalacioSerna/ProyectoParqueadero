@@ -50,11 +50,11 @@ public class Moto extends Vehiculo {
       int opcionColor = sc.nextInt();
       sc.nextLine();
       switch (opcionColor) {
-              case 1: color = "NEGRO"; break;
-              case 2: color = "BLANCO"; break;
-              case 3: color = "GRIS"; break;
-              case 4: color = "ROJO"; break;
-              case 5: color = "AZUL"; break;
+              case 1: color = "NEGRO"; colorValido = true; break;
+              case 2: color = "BLANCO"; colorValido = true; break;
+              case 3: color = "GRIS"; colorValido = true; break;
+              case 4: color = "ROJO"; colorValido = true; break;
+              case 5: color = "AZUL"; colorValido = true; break;
         case 0: 
           System.out.print("Ingrese el color: ");
           color = sc.nextLine().toUpperCase();
