@@ -265,8 +265,8 @@ public static int validaPuestoMoto(int numeroEstacionamiento){
             if (sc.hasNextInt()) {
                 nuevoPuesto = sc.nextInt();
                 sc.nextLine(); 
-            if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
-              if (nuevoPuesto >= 1 && nuevoPuesto <= 100) {
+            if (nuevoPuesto >= 1 && nuevoPuesto <= 40) {
+              if (nuevoPuesto >= 1 && nuevoPuesto <= 40) {
                     if (espaciosMoto[nuevoPuesto] == null) {
                         numeroEstacionamiento = nuevoPuesto;
                         puestoValido = true;
