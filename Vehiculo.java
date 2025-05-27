@@ -1,3 +1,4 @@
+
 package proyectoparqueadero;
 
 import java.io.BufferedWriter;
@@ -13,19 +14,28 @@ public class Vehiculo {
   protected String placa;
   protected String numeroEstacionamiento;
   private Factura factura;
+  protected static int tiempoInicial = Tiempo.hora();
   public static Scanner sc = new Scanner(System.in);
 
   // Constructores
   public Vehiculo() {
   }
-
-  public Vehiculo(String color, String marca, String placa) {
+  public Vehiculo(String color, String marca, String placa, int tiempoInicial) {
+    this.tiempoInicial = tiempoInicial;
     this.color = color;
     this.marca = marca;
     this.placa = placa;
   }
 
   // Getter y setters
+
+    public static int getTiempoInicial() {
+        return tiempoInicial;
+    }
+
+    public void setTiempoInicial(int tiempoInicial) {
+        this.tiempoInicial = tiempoInicial;
+    }
   public String getColor() {
     return color;
   }
@@ -69,7 +79,7 @@ public class Vehiculo {
     ^ = inicio
     $ = fin
     {3} = 3 veces repetidas
-    \\d = cualquier digito del 0 al 9
+    \\d = cualquier digito del 0 al 9
   */
   public static boolean validarPlacaCarro(String placa) {
     return placa.matches("^[A-Z]{3}\\d{3}$");
