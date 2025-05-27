@@ -1,7 +1,8 @@
 package proyectoparqueadero;
+
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Factura {
 
@@ -10,7 +11,6 @@ public class Factura {
 	protected static Moto moto;
 	protected static Vehiculo vehiculo;
 	private static double valor;
-	public double hora;
 	public static Scanner sc = new Scanner(System.in);
 	static ArrayList<Factura> facturasCanceladas = new ArrayList<>();
 	
@@ -24,36 +24,38 @@ public class Factura {
 	}
 
 	public Factura(Carro carro, double valor, double hora) {
-		super();
+		
 		this.carro = carro;
 		this.valor = valor;
-		this.hora = hora;
+		
 	}
 	
 	public Factura(Moto moto, double valor, double hora) {
 		super();
 		this.moto = moto;
 		this.valor = valor;
-		this.hora = hora;
 	}
 	
 	//Métodos
-	public static double obtenerHora() {
-		return 0;
-	}
 	
-	public static double obtenerValor(int tipoVehiculo, double horaInicial) {
+        
+	
+	public static double obtenerValor(int tipoVehiculo, int horaInicial) {
 		
 		double valor=0;
 	
 		switch (tipoVehiculo) {
 			case 1:
 				//Carro --- Fraccion 4000
-				valor = 4000*Factura.obtenerHora();
-
+                                System.out.println("Tiempo Inicial: " + horaInicial);
+                                System.out.println("Tiempo final: " + Tiempo.obtenerHoraSalida());
+                                
+				valor = 4000*(((Tiempo.obtenerHoraSalida() - horaInicial)*30)/60);
+                                break;
 			case 2:
 				//Moto --- Fraccion 2500
-				valor = 2500*Factura.obtenerHora();
+				valor = 2500*(((Tiempo.obtenerHoraSalida() - horaInicial)*30)/60);
+                                break;
 		}
 		return valor;
 	}
@@ -67,20 +69,17 @@ public class Factura {
 	public static void generarFactura() {
 		System.out.print("\n¿Qué tipo vehiculo desea agregar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
-		double valor = 0;
-		double hora = Factura.obtenerHora();
 		Factura factura = new Factura();
 		
 		switch (tipoVehiculo) {
 		case 1:
 			carro = Carro.agregarCarro();
-			factura = new Factura(carro, valor, hora);
+			factura = new Factura(carro, valor, Carro.getTiempoInicial());
 			ListaDobleFactura.agregarFacturaLista(factura);
 			break;
-
 		case 2:
 			moto = Moto.agregarMoto();
-			factura = new Factura(moto, valor, hora);
+			factura = new Factura(moto, valor, Moto.getTiempoInicial());
 			ListaDobleFactura.agregarFacturaLista(factura);
 			break;
 		}
@@ -88,19 +87,24 @@ public class Factura {
 	}
 
 	public static void pagarFactura() {
-		System.out.print("\n¿Qué tipo vehiculo saldrá (Carro(1) - Moto(2))?: ");
+		System.out.print("\n¿Qué tipo vehiculo saldrá? (Carro(1) - Moto(2)): ");
 		int tipoVehiculo = sc.nextInt();
 		
 		switch (tipoVehiculo) {
 		case 1:
 			System.out.print("\nIngrese placa: ");
+                     
 			carro = Carro.quitarVehiculoCarro(sc.next().toUpperCase());
+                        System.out.println("El valor total pagado fue: " + obtenerValor(tipoVehiculo, carro.getTiempoInicial()));
 			ListaDobleFactura.cancelarFactura(carro.getFactura());
+                        
 			break;
 
 		case 2:
 			System.out.print("\nIngrese placa: ");
+                        
 			moto = Moto.quitarVehiculoMoto(sc.next().toUpperCase());
+                        System.out.println("El valor total pagado fue de: " + obtenerValor(tipoVehiculo, moto.getTiempoInicial()));
 			ListaDobleFactura.cancelarFactura(moto.getFactura());
 			break;
 		}
@@ -111,29 +115,24 @@ public class Factura {
 		System.out.print("\n¿Qué tipo vehiculo desea actualizar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
 		double valor=0;
-		double hora=0;
 		Factura factura = new Factura();
 		
 		switch (tipoVehiculo) {
 		case 1:
 			System.out.print("\nIngrese placa: ");
 			carro = Carro.modificarInformacionCarro(sc.next().toUpperCase());
-			valor = Factura.obtenerValor(tipoVehiculo, 0);
-			hora = Factura.obtenerHora();
-			
-			factura = new Factura(carro, valor, hora);
-			
+			valor = Factura.obtenerValor(tipoVehiculo, Carro.getTiempoInicial());
+                        
+			factura = new Factura(carro, valor, Carro.getTiempoInicial());
 			ListaDobleFactura.actualizarFactura(factura);
 			break;
 
 		case 2:
 			System.out.print("\nIngrese placa: ");
 			moto = Moto.modificarInformacionMoto(sc.next().toUpperCase());
-			valor = Factura.obtenerValor(tipoVehiculo, 0);
-			hora = Factura.obtenerHora();
+			valor = Factura.obtenerValor(tipoVehiculo, Moto.getTiempoInicial());
 			
-			factura = new Factura(moto, valor, hora);
-			
+			factura = new Factura(moto, valor, Moto.getTiempoInicial());
 			ListaDobleFactura.actualizarFactura(factura);
 			break;
 		}
