@@ -20,8 +20,8 @@ public class Moto extends Vehiculo {
   // Constructor
   public Moto() {}
 
-  public Moto(String color, String marca, String placa, int cilindraje) {
-    super(color, marca, placa);
+  public Moto(String color, String marca, String placa,int tiempoInicial, int cilindraje) {
+    super(color, marca, placa, tiempoInicial);
     this.cilindraje = cilindraje;
   }
 
@@ -125,7 +125,7 @@ public class Moto extends Vehiculo {
     int puesto = 0;
     boolean puestoValido = false;
     while (!puestoValido) {
-      System.out.print("¿En qué puesto se estacionó? (1-40): ");
+      System.out.print("¿En qué puesto se estacionó? (1-50): ");
       if (sc.hasNextInt()) {
           puesto = sc.nextInt();
           sc.nextLine(); // Limpia el buffer
@@ -236,7 +236,7 @@ public class Moto extends Vehiculo {
         int cilindraje = Integer.parseInt(contenido[2]);
         String placa = contenido[3];
         String numeroEstacionamiento = contenido[4];
-        Moto moto = new Moto(color, marca, placa, cilindraje);
+        Moto moto = new Moto(color, marca, placa, tiempoInicial, cilindraje);
         moto.setNumeroEstacionamiento(numeroEstacionamiento);
 
         espaciosMoto[Integer.parseInt(numeroEstacionamiento)] = moto;
