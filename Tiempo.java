@@ -1,7 +1,8 @@
+
 package proyectoparqueadero;
 import java.time.format.DateTimeFormatter;// se usa en los dos metodos para importar o traer fecha y hora
 import java.time.LocalDate;//metodo para slo tener la fecha
-import java.time.LocalTime;//metodo solo para tener la hora
+import java.time.LocalTime;//metodo solo para tener la haor
 
 public class Tiempo {
 public String dia (){  
@@ -10,7 +11,7 @@ public String dia (){
         String dia = fecha.format(formatoFecha);
         return (dia);
     }
-    public int hora (){
+    public static int hora (){
         LocalTime hora = LocalTime.now();      
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss");
         // es la variable para guardar la hora como tal
@@ -26,7 +27,11 @@ public String dia (){
         int s1= Integer.parseInt(partes[2]);
         
         int Total=((h1*60)+m1+(s1/60));
-        return (Total);       
+        return Total;       
     }
+    
+    public static int obtenerHoraSalida() {
+		return Tiempo.hora();
+	}
 
 }
