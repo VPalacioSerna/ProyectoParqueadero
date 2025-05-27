@@ -72,7 +72,7 @@ public class Vehiculo {
     return factura;
   }
 
-  // vale: Método para validar placa: 3 letras seguidas de 3 números
+  // Método para validar placa: 3 letras seguidas de 3 números
   // Para carro: 3 letras + 3 números, solo mayúsculas (ej: ABC123)
   /*
     Significado simbolico de el metodo matches:
