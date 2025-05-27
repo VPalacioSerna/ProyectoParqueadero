@@ -307,30 +307,6 @@ public class Carro extends Vehiculo {
     return carro;
 }
 
-  /*public static void modificarInformacionCarro(int puesto) {
-    for (int i = 0; i < espaciosCarro.length; i++) {
-      if (espaciosPisoCarro[i] != false) {
-        if (puesto == Integer.valueOf(espaciosCarro[i].getNumeroEstacionamiento())) {
-          System.out.print("\nIngrese color: ");
-          espaciosCarro[i].setColor(sc.next());
-
-          System.out.print("Ingrese marca: ");
-          espaciosCarro[i].setMarca(sc.next());
-
-          System.out.print("Ingrese número de puertas: ");
-          espaciosCarro[i].setNumeroDePuertas(sc.nextInt());
-
-          System.out.print("Ingrese tipo de vehiculo: ");
-          espaciosCarro[i].setTipoDeVehiculo(sc.next());
-
-          System.out.print("Ingrese la placa: ");
-          espaciosCarro[i].setPlaca(sc.next());
-        }
-      }
-    }
-    System.out.println();
-  }*/
-
   public static void guardarVehiculoEnArchivo(String direccionArchivo) {
     String lineaDeInfoCarro = "";
     String contenidoArchivo = "";
