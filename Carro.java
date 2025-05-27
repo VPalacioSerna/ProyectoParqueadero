@@ -20,8 +20,8 @@ public class Carro extends Vehiculo {
   // Cpnstructores
   public Carro() {}
   
-  public Carro(String color, String marca, String placa, int numeroDePuertas, String tipoDeVehiculo) {
-    super(color, marca, placa);
+  public Carro(String color, String marca, String placa, int tiempoInicial, int numeroDePuertas, String tipoDeVehiculo) {
+    super(color, marca, placa, tiempoInicial);
     this.numeroDePuertas = numeroDePuertas;
     this.tipoDeVehiculo = tipoDeVehiculo;
   }
@@ -77,13 +77,13 @@ public class Carro extends Vehiculo {
               break;
         case 0: 
           System.out.print("Ingrese el color: ");
-          color = sc.nextLine().toUpperCase();
+          color = sc.next().toUpperCase();
           colorValido = true;
           break;
               default: System.out.println("Opción inválida. Intente de nuevo.");
           }
       } 
-      //carro.setColor(color);
+      carro.setColor(color);
     // System.out.print("\nIngrese color: ");
     // carro.setColor(sc.next());
 
@@ -373,7 +373,7 @@ public class Carro extends Vehiculo {
         String tipoDeVehiculo = contenido[3];
         String placa = contenido[4];
         String numeroEstacionamiento = contenido[5];
-        Carro carro = new Carro(color, marca, placa, numeroDePuertas, tipoDeVehiculo);
+        Carro carro = new Carro(color, marca, placa, tiempoInicial, numeroDePuertas, tipoDeVehiculo);
         carro.setNumeroEstacionamiento(numeroEstacionamiento);
 
         espaciosCarro[Integer.parseInt(numeroEstacionamiento)] = carro;
@@ -399,7 +399,7 @@ public class Carro extends Vehiculo {
           int nuevoPuesto = 0;
           boolean puestoValido = false;
           while (!puestoValido) {
-            System.out.print("¿En qué puesto se estacionó? (1-100): ");
+            System.out.print("¿En qué puesto se estacionó? (1-50): ");
             if (sc.hasNextInt()) {
                 nuevoPuesto = sc.nextInt();
                 sc.nextLine(); 
