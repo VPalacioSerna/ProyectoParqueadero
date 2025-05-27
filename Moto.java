@@ -40,7 +40,7 @@ public class Moto extends Vehiculo {
     int numeroEstacionamientoParaRegistro = 0;
     Moto moto = new Moto();
 
-    //vale: Selección de color
+    //Selección de color
     System.out.println("Seleccione el color:");
     System.out.println("1. NEGRO" + "\n2. BLANCO" + "\n3. GRIS" + "\n4. ROJO" + "\n5. AZUL"
                + "\n0. Otro: ");
@@ -65,10 +65,8 @@ public class Moto extends Vehiculo {
           }
       } 
       moto.setColor(color);
-    //System.out.print("\nIngrese color: ");
-    //moto.setColor(sc.next());
 
-    // vale: Selección de marca
+    // Selección de marca
     System.out.println("Seleccione la marca:");
     System.out.println("1. YAMAHA" + "\n2. HONDA" + "\n3. AKT" + "\n4. BMW" + "\n5. HUSQVARNA" + "\n0. Otro: ");
     String marca = "";
@@ -93,10 +91,8 @@ public class Moto extends Vehiculo {
         }
     }
     moto.setMarca(marca);
-    //System.out.print("Ingrese marca: ");
-    //moto.setMarca(sc.next());
 
-    //vale: hice cambios para validar el cilindraje
+    // cambios para validar el cilindraje
     int cilindraje;
     do {
         System.out.print("Ingrese cilindraje ");
@@ -106,10 +102,8 @@ public class Moto extends Vehiculo {
         }
     } while (cilindraje < 100 || cilindraje > 2500);
     moto.setCilindraje(cilindraje);
-    //System.out.print("Ingrese cilindraje: ");
-    //moto.setCilindraje(sc.nextInt());
 
-    // vale: hice cambios para validar la placa
+    // cambios para validar la placa
     String placa;
     do {
       System.out.print("Ingrese la placa de la moto (3 letras, 2 números y 1 letra, solo mayúsculas, ej: ABC12D): ");
@@ -120,7 +114,7 @@ public class Moto extends Vehiculo {
     } while (!validarPlacaMoto(placa));
     moto.setPlaca(placa);
 
-    //vale: hice cambios para validar el puesto
+    //cambios para validar el puesto
     //Buñuelito: Añadí el método validaPuesto
     int puesto = 0;
     boolean puestoValido = false;
@@ -141,8 +135,6 @@ public class Moto extends Vehiculo {
       }
     }
     moto.setNumeroEstacionamiento(String.valueOf(puesto));
-    //System.out.print("Ingrese el # del puesto donde se estaciono: ");
-    //moto.setNumeroEstacionamiento(sc.next());
 
     numeroEstacionamientoParaRegistro = Integer.valueOf(moto.getNumeroEstacionamiento());
 
