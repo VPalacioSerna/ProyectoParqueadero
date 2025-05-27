@@ -1,3 +1,4 @@
+
 package proyectoparqueadero;
 
 import java.io.BufferedReader;
@@ -83,7 +84,7 @@ public class ListaDobleFactura {
 				System.out.println("\nNo hay facturas para actualizar ...");
 			}else {
 				if(paraBuscar.factura == paraActualizar.factura){
-					paraBuscar = paraActualizar;
+					paraBuscar.factura = paraActualizar.factura;
 					break;
 				}
 			}
@@ -167,8 +168,8 @@ public class ListaDobleFactura {
 	            while (lineaDeInformacion != null) {
 	                String contenido[] = lineaDeInformacion.split(",");
 
-	                Carro carro = new Carro(contenido[0], contenido[1], contenido[2],
-	                		Integer.parseInt(contenido[3]), contenido[4]);
+	                Carro carro = new Carro(contenido[0], contenido[1], contenido[2], Integer.parseInt(contenido[3]),
+	                		Integer.parseInt(contenido[4]), contenido[5]);
 	                
 	                String numeroEstacionamiento = contenido[5];
 	                carro.setNumeroEstacionamiento(numeroEstacionamiento);
@@ -200,8 +201,8 @@ public class ListaDobleFactura {
 	            while (lineaDeInformacion != null) {
 	                String contenido[] = lineaDeInformacion.split(",");
 
-	                Moto moto = new Moto(contenido[0], contenido[1], contenido[2],
-	                		Integer.parseInt(contenido[3]));
+	                Moto moto = new Moto(contenido[0], contenido[1], contenido[2], Integer.parseInt(contenido[3]),
+	                		Integer.parseInt(contenido[4]));
 	                
 	                String numeroEstacionamiento = contenido[4];
 	                moto.setNumeroEstacionamiento(numeroEstacionamiento);
@@ -261,8 +262,10 @@ public class ListaDobleFactura {
                 String color = contenido[0];
                 String marca = contenido[1];
                 String placa = contenido[2];
-                String numeroEstacionamiento = contenido[3];
-                Vehiculo vehiculo = new Vehiculo(color, marca, placa);
+                String tiempoInicial = contenido[3];
+                String numeroEstacionamiento = contenido[4];
+                
+                Vehiculo vehiculo = new Vehiculo(color, marca, placa, Integer.parseInt(tiempoInicial));
                 vehiculo.setNumeroEstacionamiento(numeroEstacionamiento);
                 double valor = Double.parseDouble(contenido[4]);
                 
@@ -294,7 +297,8 @@ public class ListaDobleFactura {
 				if (paraMostrar.factura.carro != null) {
 					System.out.print("Placa: "+paraMostrar.factura.carro.getPlaca()+"\n"
 		  					+"Número estacionamiento: "+paraMostrar.factura.carro.getNumeroEstacionamiento()+"\n"
-		  					+"Hora (momento consulta): "+paraMostrar.factura.hora+"\n"); 
+		  					+"Hora (momento consulta): "+ Tiempo.obtenerHoraSalida()+"\n"); 
+                                        System.out.println("");
 		  			paraMostrar = paraMostrar.siguiente;
 				}
 	  		}
@@ -304,7 +308,7 @@ public class ListaDobleFactura {
 				if(paraMostrar.factura.moto != null) {
 					System.out.print("Placa: "+paraMostrar.factura.moto.getPlaca()+"\n"
 		  					+"Número estacionamiento: "+paraMostrar.factura.moto.getNumeroEstacionamiento()+"\n"
-		  					+"Hora (momento consulta): "+paraMostrar.factura.hora+"\n"); 
+		  					+"Hora (momento consulta): "+ Tiempo.obtenerHoraSalida() +"\n"); 
 		  			paraMostrar = paraMostrar.siguiente;
 				}else {
 					break;
