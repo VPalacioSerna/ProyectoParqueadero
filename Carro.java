@@ -311,68 +311,7 @@ public class Carro extends Vehiculo {
     System.out.println();
     return carro;
 }
-
-  public static void guardarVehiculoEnArchivo(String direccionArchivo) {
-    String lineaDeInfoCarro = "";
-    String contenidoArchivo = "";
-    try {
-      FileWriter paraTraerArchivo = new FileWriter(direccionArchivo);
-      BufferedWriter escritor = new BufferedWriter(paraTraerArchivo);
-      for (int i = 0; i < espaciosCarro.length; i++) {
-        if (espaciosPisoCarro[i] != false) {
-          String color = espaciosCarro[i].getColor();
-          String marca = espaciosCarro[i].getMarca();
-          int numeroDePuertas = espaciosCarro[i].getNumeroDePuertas();
-          String tipoDeVehiculo = espaciosCarro[i].getTipoDeVehiculo();
-          String placa = espaciosCarro[i].getPlaca();
-          String numeroEstacionamiento = espaciosCarro[i].getNumeroEstacionamiento();
-          lineaDeInfoCarro = color + "," + marca + "," + numeroDePuertas + "," + tipoDeVehiculo + "," + placa + ","
-              + numeroEstacionamiento + "\n";
-          contenidoArchivo = contenidoArchivo + lineaDeInfoCarro;
-        }
-      }
-      escritor.write(contenidoArchivo);
-      System.out.print("\nInformación almacenada correctamente.");
-      escritor.close();
-      paraTraerArchivo.close();
-    } catch (IOException e) {
-      System.out.print("Error al guardar los vehiculos");
-    }
-  }
-
-  public static void cargarInformacion(String direccionArchivo) {
-    try {
-      FileReader paraTraerArchivo = new FileReader(direccionArchivo);
-      BufferedReader lector = new BufferedReader(paraTraerArchivo);
-      String lineaDeInformacion = lector.readLine();
-      while (lineaDeInformacion != null) {
-        String contenido[] = lineaDeInformacion.split(",");
-
-        String color = contenido[0];
-        String marca = contenido[1];
-        int numeroDePuertas = Integer.parseInt(contenido[2]);
-        String tipoDeVehiculo = contenido[3];
-        String placa = contenido[4];
-        String numeroEstacionamiento = contenido[5];
-        Carro carro = new Carro(color, marca, placa, tiempoInicial, numeroDePuertas, tipoDeVehiculo);
-        carro.setNumeroEstacionamiento(numeroEstacionamiento);
-
-        espaciosCarro[Integer.parseInt(numeroEstacionamiento)] = carro;
-        espaciosPisoCarro[Integer.parseInt(numeroEstacionamiento)] = true;
-        lineaDeInformacion = lector.readLine();
-      }
-      System.out.print("\nInformación almacenada correctamente.");
-      lector.close();
-      paraTraerArchivo.close();
-    } catch (IOException e) {
-      System.out.print("\nError de lectura");
-    }
-  }
-
-  public String toStringCarro() {
-		return color + "," + marca + "," + placa + "," + numeroDePuertas +"," + tipoDeVehiculo 
-				+ "," + numeroEstacionamiento;
-	}
+	
   //Metodo para validar si el puesto está ocupado o no
   public static int validaPuestoCarro(int numeroEstacionamiento){
       while(espaciosCarro[numeroEstacionamiento] != null){
@@ -404,7 +343,7 @@ public class Carro extends Vehiculo {
   }  
       return numeroEstacionamiento;
 }
-  public void ParqueaderoGráfico(){
+  public void ParqueaderoGrafico(){
       // DTK: Marcación de limites.
       for (int i = 0; i < 7; i++) {
           if(i == 0)
@@ -464,6 +403,11 @@ public class Carro extends Vehiculo {
         }
       System.out.println(acum);
     }
+	
+  public String toStringCarro() {
+		return color + "," + marca + "," + placa + "," + numeroDePuertas +"," + tipoDeVehiculo 
+				+ "," + numeroEstacionamiento;
+	}
       
      
 }
