@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Carro extends Vehiculo {
 
   // Atributos
+  private String parqueadero[][]=new String[7][12];
   private int numeroDePuertas;// Atributo nuevo para diferenciar de moto
   private String tipoDeVehiculo;// Atributo nuevo para diferenciar de moto
   static boolean[] espaciosPisoCarro = new boolean[50]; // matriz para verificar espacios ocupados(true) y
@@ -162,7 +163,11 @@ public class Carro extends Vehiculo {
     int puesto = 0;
     boolean puestoValido = false;
     while (!puestoValido) {
+      Carro Juli = new Carro();
+      Juli.ParqueaderoGráfico();
       System.out.print("¿En qué puesto se estacionó? (1-50): ");
+      
+      
       if (sc.hasNextInt()) {
           puesto = sc.nextInt();
           sc.nextLine(); 
@@ -399,4 +404,71 @@ public class Carro extends Vehiculo {
   }  
       return numeroEstacionamiento;
 }
+  public void ParqueaderoGráfico(){
+      // DTK: Marcación de limites.
+      for (int i = 0; i < 7; i++) {
+          if(i == 0)
+              parqueadero[i][i] = "+";
+          else{
+              if(i == 6){
+                parqueadero [i][0] = "+";
+              }
+              else
+                parqueadero[i][0] = "|";      
+          }
+      }
+  
+      for (int i = 1; i < 12; i++) {
+          if(i == 11){
+              parqueadero [0][i] = "+";
+              parqueadero [6][i] = "+";
+          }
+          else
+              parqueadero [0][i] = "==";
+          for (int j = 1; j < 11; j++) {
+              parqueadero [6][j] = "==";
+          }
+          for (int j = 1; j < 6; j++) {
+              parqueadero [j][11] = "|";
+          }
+        }
+      int vecaux[]= new int[50];
+      int aux0 = 1;
+      for (int i = 0; i < 50; i++) {
+          vecaux[i]= aux0;
+          aux0++;
+      }
+      //DTK: Enumeración de parqueaderos
+      String Conteitor = "";
+      int K = 0;
+      for (int i = 1; i < 6; i++) {
+          for (int j = 1; j < 11; j++) {
+              if(K<9){
+              parqueadero[i][j] = "0"+String.valueOf(vecaux[K]);
+              K++;
+              }else{
+              parqueadero[i][j] = String.valueOf(vecaux[K]);
+              K++; 
+              }
+          }
+          
+      }
+      //DTK: Impresión
+      String acum="";
+      
+      for (int i = 0; i < 7; i++) {
+          for (int j = 0; j < 12; j++) {
+              acum+=parqueadero[i][j]+"         ";
+            }
+          acum+="\n";
+        }
+      System.out.println(acum);
+    }
+      
+     
 }
+      
+          
+      
+  
+
