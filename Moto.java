@@ -188,64 +188,6 @@ public class Moto extends Vehiculo {
 		System.out.println();
 		return moto;
 	}
-
-  public static void guardarVehiculoEnArchivo(String direccionArchivo) {
-    String lineaDeInfoMoto = "";
-    String contenidoArchivo = "";
-    try {
-      FileWriter paraTraerArchivo = new FileWriter(direccionArchivo);
-      BufferedWriter escritor = new BufferedWriter(paraTraerArchivo);
-      for (int i = 0; i < espaciosMoto.length; i++) {
-        if (espaciosPisoMoto[i] != false) {
-          String color = espaciosMoto[i].getColor();
-          String marca = espaciosMoto[i].getMarca();
-          int cilindraje = espaciosMoto[i].getCilindraje();
-          String placa = espaciosMoto[i].getPlaca();
-          String numeroEstacionamiento = espaciosMoto[i].getNumeroEstacionamiento();
-          lineaDeInfoMoto = color + "," + marca + "," + cilindraje + "," + placa + "," + numeroEstacionamiento + "\n";
-          contenidoArchivo = contenidoArchivo + lineaDeInfoMoto;
-        }
-      }
-      escritor.write(contenidoArchivo);
-      System.out.print("\nInformación almacenada correctamente.");
-      escritor.close();
-      paraTraerArchivo.close();
-    } catch (IOException e) {
-      System.out.print("Error al guardar los vehiculos");
-    }
-  }
-
-  public static void cargarInformacion(String direccionArchivo) {
-    try {
-      FileReader paraTraerArchivo = new FileReader(direccionArchivo);
-      BufferedReader lector = new BufferedReader(paraTraerArchivo);
-      String lineaDeInformacion = lector.readLine();
-      while (lineaDeInformacion != null) {
-        String contenido[] = lineaDeInformacion.split(",");
-
-        String color = contenido[0];
-        String marca = contenido[1];
-        int cilindraje = Integer.parseInt(contenido[2]);
-        String placa = contenido[3];
-        String numeroEstacionamiento = contenido[4];
-        Moto moto = new Moto(color, marca, placa, tiempoInicial, cilindraje);
-        moto.setNumeroEstacionamiento(numeroEstacionamiento);
-
-        espaciosMoto[Integer.parseInt(numeroEstacionamiento)] = moto;
-        espaciosPisoMoto[Integer.parseInt(numeroEstacionamiento)] = true;
-        lineaDeInformacion = lector.readLine();
-      }
-      System.out.print("\nInformación almacenada correctamente.");
-      lector.close();
-      paraTraerArchivo.close();
-    } catch (IOException e) {
-      System.out.print("\nError de lectura");
-    }
-  }
-public String toStringMoto() {
-		return color + "," + marca + "," + placa + "," + cilindraje + "," + numeroEstacionamiento;
-	}
-
 //Buñuelito: Añadí el metodo para validar motos
 public static int validaPuestoMoto(int numeroEstacionamiento){
  while(espaciosMoto[numeroEstacionamiento] != null){
@@ -273,6 +215,10 @@ public static int validaPuestoMoto(int numeroEstacionamiento){
               sc.nextLine(); 
         }
       }
+
+	public String toStringMoto() {
+		return color + "," + marca + "," + placa + "," + cilindraje + "," + numeroEstacionamiento;
+	}
     }
   }  
       return numeroEstacionamiento;
