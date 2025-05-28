@@ -13,7 +13,7 @@ public class Factura {
 	private static double valor;
 	protected static ListaDobleFactura ldf = new ListaDobleFactura();
 	public static Scanner sc = new Scanner(System.in);
-	private static ArrayList<Factura> facturasCanceladas = new ArrayList<>();
+	protected static ArrayList<Factura> facturasCanceladas = new ArrayList<>();
 
 	// Constructores
 	public Factura() {
@@ -41,11 +41,6 @@ public class Factura {
 		this.valor = valor;
 	}
 
-	// Métodos
-	public static double obtenerHora() {
-		return 0;
-	}
-
 	public static double obtenerValor(int tipoVehiculo, int horaInicial) {
 
 		double valor = 0;
@@ -66,7 +61,7 @@ public class Factura {
 		return valor;
 	}
 
-	public static double getValor() {
+	public double getValor() {
 		return valor;
 	}
 
@@ -74,7 +69,7 @@ public class Factura {
 		System.out.print("\n¿Qué tipo vehiculo desea agregar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
 		double valor = 0;
-		double hora = Factura.obtenerHora();
+		double hora = Tiempo.hora();
 		Factura factura = new Factura();
 
 		switch (tipoVehiculo) {
@@ -124,8 +119,8 @@ public class Factura {
 		case 1:
 			System.out.print("\nIngrese placa: ");
 			Carro carroAuxiliar = Carro.modificarInformacionCarro(sc.next().toUpperCase());
-			valor = Factura.obtenerValor(tipoVehiculo, 0);
-			hora = Factura.obtenerHora();
+			valor = Factura.obtenerValor(tipoVehiculo, carroAuxiliar.getTiempoInicial());
+			hora = Tiempo.hora();
 
 			factura = new Factura(carroAuxiliar, valor, hora);
 
@@ -135,8 +130,8 @@ public class Factura {
 		case 2:
 			System.out.print("\nIngrese placa: ");
 			Moto motoAuxiliar = Moto.modificarInformacionMoto(sc.next().toUpperCase());
-			valor = Factura.obtenerValor(tipoVehiculo, 0);
-			hora = Factura.obtenerHora();
+			valor = Factura.obtenerValor(tipoVehiculo, motoAuxiliar.getTiempoInicial());
+			hora = Tiempo.hora();
 
 			factura = new Factura(motoAuxiliar, valor, hora);
 
