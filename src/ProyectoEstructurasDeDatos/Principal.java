@@ -6,6 +6,6 @@ public class Principal {
 		
 		Administrador admin = new Administrador();
 		admin.menuOpciones();
-		
+		//JuanJo nuevo cambio
 	}
 }
