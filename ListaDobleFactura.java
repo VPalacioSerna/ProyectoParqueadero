@@ -1,5 +1,4 @@
-
-package proyectoparqueadero;
+package ProyectoEstructurasDeDatos;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class ListaDobleFactura {
 
 	// Atributos
-	Nodo cabeza;
+	static Nodo cabeza;
 	Nodo cola;
 	private static int contador = 0;
 	protected static Scanner sc = new Scanner(System.in);
@@ -143,7 +142,7 @@ public class ListaDobleFactura {
 		}
 	}
 
-	public void guardarFacturasPendientesEnArchivo() {
+	public static void guardarFacturasPendientesEnArchivo() {
 		System.out.print("\n¿Qué tipo vehiculo desea agregar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
 		Nodo paraBuscar = cabeza;
@@ -162,8 +161,6 @@ public class ListaDobleFactura {
 				while (paraBuscar != null) {
 					if (paraBuscar.factura.carro != null) {
 						String infoCarro = paraBuscar.factura.carro.toStringCarro();
-						// String numeroEstacionamiento =
-						// paraBuscar.factura.carro.getNumeroEstacionamiento();
 						double valor = paraBuscar.factura.getValor();
 						lineaDeInfo = infoCarro + "," + valor + "\n";
 						contenidoArchivo = contenidoArchivo + lineaDeInfo;
@@ -175,7 +172,7 @@ public class ListaDobleFactura {
 				escritor.close();
 				paraTraerArchivo.close();
 			} catch (IOException e) {
-				System.out.print("\nError al guardar los vehiculos");
+				System.out.print("\nError al guardar los vehiculos" + e);
 			}
 			break;
 
@@ -187,8 +184,6 @@ public class ListaDobleFactura {
 				while (paraBuscar != null) {
 					if (paraBuscar.factura.moto != null) {
 						String infoMoto = paraBuscar.factura.moto.toStringMoto();
-						// String numeroEstacionamiento =
-						// paraBuscar.factura.moto.getNumeroEstacionamiento();
 						double valor = paraBuscar.factura.getValor();
 						lineaDeInfo = infoMoto + "," + valor + "\n";
 						contenidoArchivo = contenidoArchivo + lineaDeInfo;
@@ -205,7 +200,7 @@ public class ListaDobleFactura {
 			break;
 		}
 	}
-
+	
 	public static void cargarFacturasPendientes() {
 		System.out.print("\n¿Qué tipo vehiculo desea agregar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
@@ -235,7 +230,7 @@ public class ListaDobleFactura {
 					carro.espaciosCarro[Integer.parseInt(numeroEstacionamiento)] = carro;
 					carro.espaciosPisoCarro[Integer.parseInt(numeroEstacionamiento)] = true;
 
-					double valor = Integer.parseInt(contenido[7]);
+					double valor = Double.parseDouble(contenido[7]);
 					int hora = Integer.parseInt(contenido[3]);
 
 					Factura factura = new Factura(carro, valor, hora);
@@ -295,10 +290,8 @@ public class ListaDobleFactura {
 			FileWriter paraTraerArchivo = new FileWriter(direccionArchivoPlano, true);
 			BufferedWriter escritor = new BufferedWriter(paraTraerArchivo);
 			for (int i = 0; i < Factura.facturasCanceladas.size(); i++) {
-				String info = Factura.facturasCanceladas.get(i).vehiculo.toString();
-				double valor = Factura.facturasCanceladas.get(i).getValor();
-				lineaDeInfo = info + "," + valor + "\n";
-				contenidoArchivo = contenidoArchivo + lineaDeInfo;
+				String info = Factura.facturasCanceladas.get(i) + "\n";
+				contenidoArchivo = contenidoArchivo + info;
 			}
 			escritor.write(contenidoArchivo);
 			System.out.print("\nInformación guardada correctamente.");
@@ -316,13 +309,8 @@ public class ListaDobleFactura {
 			BufferedReader lector = new BufferedReader(paraTraerArchivo);
 			String lineaDeInformacion = lector.readLine();
 			while (lineaDeInformacion != null) {
-				String contenido[] = lineaDeInformacion.split(",");
-
-				Vehiculo vehiculo = new Vehiculo(contenido[0], contenido[1], contenido[2], contenido[3]);
-				double valor = Double.parseDouble(contenido[4]);
-
-				Factura factura = new Factura(vehiculo, valor);
-				Factura.facturasCanceladas.add(factura);
+				
+				Factura.facturasCanceladas.add(lineaDeInformacion);
 				lineaDeInformacion = lector.readLine();
 			}
 			System.out.print("\nInformación recuperada correctamente.");
