@@ -34,7 +34,6 @@ public class ListaDobleFactura {
 			cola = auxiliar;
 			contador++;
 		}
-		System.out.print("\nCon: " + contador);
 	}
 
 	public void cancelarFactura(String placa, int tipoVehiculo) {
