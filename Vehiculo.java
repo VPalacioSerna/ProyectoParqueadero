@@ -90,13 +90,6 @@ public class Vehiculo {
     return placa.matches("^[A-Z]{3}\\d{2}[A-Z]$");
   }
 
-  // Métodos
-  /*
-   * Acá cambie la forma en la que estaba implementado el metodo, pienso que seria
-   * bueno añadir algun tipo de factor que diferencie los
-   * carros de las motos, como para que no parezca que tienen exactamente los
-   * mismos atributos, porque entonces no tendria mucho sentido el cambio que hice
-   */
   public static void mostrarVehiculos() {
 		System.out.print("\n\tVehiculos");
 		System.out.print("\nCarros\n");
@@ -191,44 +184,6 @@ public class Vehiculo {
 		}
 		
 		return respuesta+"\n";
-	}
-	
-	public static void guardarVehiculosEnArchivo(int tipoVehiculo) {
-		
-		String direccionArchivoPlano = "";
-		
-		switch (tipoVehiculo) {
-		case 1:
-			//Carro
-			direccionArchivoPlano = "Carros.dat";
-			Carro.guardarVehiculoEnArchivo(direccionArchivoPlano);
-			break;
-
-		case 2:
-			//Moto
-			direccionArchivoPlano = "Motos.dat";
-			Moto.guardarVehiculoEnArchivo(direccionArchivoPlano);
-			break;
-		}
-	}
-	
-	public static void cargarInformacionVehiculos(int tipoVehiculo) {
-		
-		String direccionArchivoPlano = "";
-		
-		switch (tipoVehiculo) {
-		case 1:
-			//Carro
-			direccionArchivoPlano = "Carros.dat";
-			Carro.cargarInformacion(direccionArchivoPlano);
-			break;
-
-		case 2:
-			//Moto
-			direccionArchivoPlano = "Motos.dat";
-			Moto.cargarInformacion(direccionArchivoPlano);
-			break;
-		}
 	}
 
 	@Override
