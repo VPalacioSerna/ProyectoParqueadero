@@ -76,11 +76,10 @@ public class Administrador {
 					do {
 						System.out.print("\n\t--Menú para Consultas/Mostrar--\n"
 								+"1. Espacios vacios u ocupados --- (Digite 1)\n"
-								+"2. Visualización de espacios vacios y ocupados --- (Digite 2)\n"
-								+"3. Información de un vehiculo en especifico --- (Digite 3)\n"
-								+"4. Información de todos los vehiculos --- (Digite 4)\n"
-								+"5. Consulta facturas pendientes --- (Digite 5)\n"
-								+"6. Consulta facturas canceladas --- (Digite 6)\n"
+								+"2. Información de un vehiculo en especifico --- (Digite 2)\n"
+								+"3. Información de todos los vehiculos --- (Digite 3)\n"
+								+"4. Consulta facturas pendientes --- (Digite 4)\n"
+								+"5. Consulta facturas canceladas --- (Digite 5)\n"
 								+"0. Volver al menú anterior --- (Digite 0)\n"
 								+"Opción: ");
 						opcionParaSubmenus = sc.nextInt();
@@ -90,24 +89,20 @@ public class Administrador {
 								System.out.print("\nEspacios ocupados(1) --- Espacios vacios(2): ");
 								System.out.print(Vehiculo.contabilizacionVehiculos(sc.nextInt()));
 								break;
-						
+
 							case 2:
-								//En construccion ...
-								break;
-						
-							case 3:
 								Vehiculo.mostrarVehiculoPorPlaca();
 								break;
 						
-							case 4:
+							case 3:
 								Vehiculo.mostrarVehiculos();
 								break;
 						
-							case 5:
+							case 4:
 								Factura.mostrarFacturasPendientes();
 								break;
 						
-							case 6:
+							case 5:
 								Factura.mostrarFacturasCanceladas();
 								break;
 								
