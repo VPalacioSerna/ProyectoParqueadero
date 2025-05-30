@@ -195,7 +195,7 @@ public static int validaPuestoMoto(int numeroEstacionamiento){
           int nuevoPuesto = 0;
           boolean puestoValido = false;
           while (!puestoValido) {
-            System.out.print("¿En qué puesto se estacionó? (1-100): ");
+            System.out.print("¿En qué puesto se estacionó? (1-40): ");
             if (sc.hasNextInt()) {
                 nuevoPuesto = sc.nextInt();
                 sc.nextLine(); 
