@@ -13,7 +13,7 @@ public class Factura {
 	private static double valor;
 	protected static ListaDobleFactura ldf = new ListaDobleFactura();
 	public static Scanner sc = new Scanner(System.in);
-	protected static ArrayList<Factura> facturasCanceladas = new ArrayList<>();
+	protected static ArrayList<String> facturasCanceladas = new ArrayList<>();
 
 	// Constructores
 	public Factura() {
@@ -29,13 +29,13 @@ public class Factura {
 		this.valor = valor;
 	}
 
-	public Factura(Carro carro, double valor, double hora) {
+	public Factura(Carro carro, double valor, int hora) {
 		super();
 		this.carro = carro;
 		this.valor = valor;
 	}
 
-	public Factura(Moto moto, double valor, double hora) {
+	public Factura(Moto moto, double valor, int hora) {
 		super();
 		this.moto = moto;
 		this.valor = valor;
@@ -44,13 +44,12 @@ public class Factura {
 	public static double obtenerValor(int tipoVehiculo, int horaInicial) {
 
 		double valor = 0;
+		System.out.println("Tiempo Inicial: " + horaInicial);
+		System.out.println("Tiempo final: " + Tiempo.obtenerHoraSalida());
 
 		switch (tipoVehiculo) {
 		case 1:
 			// Carro --- Fraccion 4000
-			System.out.println("Tiempo Inicial: " + horaInicial);
-			System.out.println("Tiempo final: " + Tiempo.obtenerHoraSalida());
-
 			valor = 4000 * (((Tiempo.obtenerHoraSalida() - horaInicial) * 30) / 60);
 			break;
 		case 2:
@@ -69,7 +68,7 @@ public class Factura {
 		System.out.print("\n¿Qué tipo vehiculo desea agregar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
 		double valor = 0;
-		double hora = Tiempo.hora();
+		int hora = Tiempo.hora();
 		Factura factura = new Factura();
 
 		switch (tipoVehiculo) {
@@ -112,7 +111,7 @@ public class Factura {
 		System.out.print("\n¿Qué tipo vehiculo desea actualizar (Carro(1) - Moto(2))?: ");
 		int tipoVehiculo = sc.nextInt();
 		double valor = 0;
-		double hora = 0;
+		int hora = 0;
 		Factura factura = new Factura();
 
 		switch (tipoVehiculo) {
@@ -141,18 +140,13 @@ public class Factura {
 	}
 
 	public static void mostrarFacturasCanceladas() {
-		if (Factura.facturasCanceladas.isEmpty()) {
+		if (facturasCanceladas.isEmpty()) {
 			System.out.print("\nNo hay facturas canceladas\n");
 		} else {
 			System.out.print("\nFacturas Canceladas (Carros y motos)\n");
-			for (int i = 0; i < Factura.facturasCanceladas.size(); i++) {
-				System.out.print("Placa: " + Factura.facturasCanceladas.get(i).vehiculo.getPlaca() + "\n" // Tiene un
-																											// error,
-																											// apunta a
-																											// nulo
-						+ "Lugar donde se había estacionado: "
-						+ Factura.facturasCanceladas.get(i).vehiculo.getNumeroEstacionamiento() + "\n"
-						+ "Valor que pagó: " + Factura.facturasCanceladas.get(i).getValor());
+			System.out.print("Color-Marca-Placa-NumeroEstacionamiento\n");
+			for (int i = 0; i < facturasCanceladas.size(); i++) {
+				System.out.print(facturasCanceladas.get(i)+"\n");
 			}
 		}
 	}
@@ -162,7 +156,6 @@ public class Factura {
 	}
 
 	public static void guardarInformacionFacturasPendientes() {
-		ListaDobleFactura ldf = new ListaDobleFactura();
-		ldf.guardarFacturasPendientesEnArchivo();
+		Factura.ldf.guardarFacturasPendientesEnArchivo();
 	}
 }
