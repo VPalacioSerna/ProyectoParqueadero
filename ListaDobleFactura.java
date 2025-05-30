@@ -40,15 +40,6 @@ public class ListaDobleFactura {
 
 		Nodo paraBuscar;
 
-		/*
-		 * 1. Nodos para cargar los datos y ya. 2. Buscar la estructurta de datos que
-		 * permita recorrer solo con la cabeza, es decir; solo con un puntero. Desde la
-		 * cabeza o desde la cola 3. Mirar cual es la estructura de Nodos que genera el
-		 * error, porque no todas las veces sucede es decir identificar como sucede el
-		 * error. 4. Verificar cuando se cargue la informacion de las archivos .dat, con
-		 * respecto a la generacion de facturas y guardado de ellas en la lista
-		 */
-
 		switch (tipoVehiculo) {
 		case 1:
 			paraBuscar = cabeza;
@@ -262,10 +253,10 @@ public class ListaDobleFactura {
 					moto.espaciosMoto[Integer.parseInt(numeroEstacionamiento)] = moto;
 					moto.espaciosPisoMoto[Integer.parseInt(numeroEstacionamiento)] = true;
 
-					double valor = Integer.parseInt(contenido[6]);
-					double hora = Integer.parseInt(contenido[3]);
+					double valor = Double.parseDouble(contenido[6]);
+					int hora = Integer.parseInt(contenido[3]);
 
-					Factura factura = new Factura(moto, hora, valor);
+					Factura factura = new Factura(moto, valor, hora);
 
 					ldf.agregarFacturaLista(factura);
 					lineaDeInformacion = lector.readLine();
