@@ -1,4 +1,4 @@
-package ProyectoEstructurasDeDatos;
+package proyectoparqueadero;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
