@@ -164,7 +164,7 @@ public class Carro extends Vehiculo {
     boolean puestoValido = false;
     while (!puestoValido) {
       Carro Juli = new Carro();
-      Juli.ParqueaderoGráfico();
+      Juli.ParqueaderoGrafico();
       System.out.print("¿En qué puesto se estacionó? (1-50): ");
       
       
