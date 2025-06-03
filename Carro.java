@@ -50,7 +50,7 @@ public class Carro extends Vehiculo {
     int numeroEstacionamientoParaRegistro = 0;
     Carro carro = new Carro();
 
-    // vale: Selección de color
+    // Selección de color
     System.out.println("Seleccione el color:");
       System.out.println("1. NEGRO" + "\n2. BLANCO" + "\n3. GRIS" + "\n4. ROJO" + "\n5. AZUL"
                + "\n0. Otro: ");
@@ -88,7 +88,7 @@ public class Carro extends Vehiculo {
     // System.out.print("\nIngrese color: ");
     // carro.setColor(sc.next());
 
-    // vale: Selección de marca
+    // Selección de marca
     System.out.println("Seleccione la marca:");
     System.out.println("1. CHEVROLET" + "\n2. RENAULT" + "\n3. MAZDA" + "\n4. TOYOTA" + "\n5. KIA" + "\n0. Otro: ");
     String marca = "";
@@ -116,7 +116,7 @@ public class Carro extends Vehiculo {
     // System.out.print("Ingrese marca: ");
     // carro.setMarca(sc.next());
 
-    // vale: Selección de número de puertas
+    // Selección de número de puertas
     System.out.println("Seleccione el número de puertas:");
     System.out.println("1. 2 puertas");
     System.out.println("2. 4 puertas");
@@ -147,7 +147,7 @@ public class Carro extends Vehiculo {
     System.out.print("Ingrese tipo de vehiculo: ");
     carro.setTipoDeVehiculo(sc.next());
 
-    // vale: hice cambios para validar la placa
+    //  hice cambios para validar la placa
     String placa;
     do {
       System.out.print("Ingrese la placa (3 letras y 3 números, ej: ABC123): ");
@@ -213,7 +213,7 @@ public class Carro extends Vehiculo {
     return carro;
   }
 
-  //vale: hice cambios para modificar la info
+  //hice cambios para modificar la info
   public static Carro modificarInformacionCarro(String placa) {
     Carro carro = new Carro();
     
