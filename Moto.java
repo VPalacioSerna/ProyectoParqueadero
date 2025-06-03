@@ -215,12 +215,11 @@ public static int validaPuestoMoto(int numeroEstacionamiento){
               sc.nextLine(); 
         }
       }
-
-	public String toStringMoto() {
-		return color + "," + marca + "," + placa + "," + cilindraje + "," + numeroEstacionamiento;
-	}
     }
   }  
       return numeroEstacionamiento;
 } 
+	public String toStringMoto() {
+		return color + "," + marca + "," + placa + "," + cilindraje + "," + numeroEstacionamiento;
+	}
 }
