@@ -319,6 +319,8 @@ public class Carro extends Vehiculo {
           int nuevoPuesto = 0;
           boolean puestoValido = false;
           while (!puestoValido) {
+         Carro Juli = new Carro();
+         Juli.ParqueaderoGrafico();
             System.out.print("¿En qué puesto se estacionó? (1-50): ");
             if (sc.hasNextInt()) {
                 nuevoPuesto = sc.nextInt();
